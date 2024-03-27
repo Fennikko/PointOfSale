@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PointOfSale": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\linki\\Documents\\Programming Learning\\CSharpAcademy\\PointOfSale\\PointOfSale\\"
+    }
+  }
+}

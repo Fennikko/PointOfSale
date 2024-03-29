@@ -1,6 +1,8 @@
-﻿using Spectre.Console;
+﻿using PointOfSale.Controllers;
+using PointOfSale.Models;
+using Spectre.Console;
 
-namespace PointOfSale;
+namespace PointOfSale.Services;
 
 public class ProductService
 {
@@ -9,6 +11,7 @@ public class ProductService
         var product = new Product();
         product.Name = AnsiConsole.Ask<string>("Product's name:");
         product.Price = AnsiConsole.Ask<decimal>("Product's Price:");
+        product.CategoryId = CategoryService.GetCategoryOptionInput();
         ProductController.AddProduct(product);
     }
 
@@ -51,7 +54,7 @@ public class ProductService
         var option = AnsiConsole.Prompt(new SelectionPrompt<string>()
             .Title("Choose a Product")
             .AddChoices(productsArray));
-        var id = products.Single(p => p.Name == option).Id;
+        var id = products.Single(p => p.Name == option).ProductId;
         var product = ProductController.GetProductById(id);
 
         return product;

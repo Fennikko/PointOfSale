@@ -1,6 +1,8 @@
-﻿using Spectre.Console;
+﻿using Microsoft.EntityFrameworkCore;
+using PointOfSale.Models;
+using Spectre.Console;
 
-namespace PointOfSale;
+namespace PointOfSale.Controllers;
 public class ProductController
 {
     public static void AddProduct(Product product)
@@ -29,7 +31,9 @@ public class ProductController
     public static Product GetProductById(int id)
     {
         using var db = new ProductsContext();
-        var product = db.Products.SingleOrDefault(p => p.Id == id);
+        var product = db.Products
+            .Include(p => p.Category)
+            .SingleOrDefault(p => p.ProductId == id);
 
         return product;
     }
@@ -38,7 +42,9 @@ public class ProductController
     {
         using var db = new ProductsContext();
 
-        var products = db.Products.ToList();
+        var products = db.Products
+            .Include(p => p.Category)
+            .ToList();
 
         return products;
     }

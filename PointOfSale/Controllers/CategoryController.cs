@@ -1,4 +1,5 @@
-﻿using PointOfSale.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PointOfSale.Models;
 
 namespace PointOfSale.Controllers;
 
@@ -21,11 +22,22 @@ public class CategoryController
         db.SaveChanges();
     }
 
+    public static void UpdateCategory(Category category)
+    {
+        using var db = new ProductsContext();
+
+        db.Update(category);
+
+        db.SaveChanges();
+    }
+
     public static List<Category> GetCategories()
     {
         using var db = new ProductsContext();
 
-        var categories = db.Categories.ToList();
+        var categories = db.Categories
+            .Include(c => c.Products)
+            .ToList();
 
         return categories;
     }

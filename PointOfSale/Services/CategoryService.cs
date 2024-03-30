@@ -18,7 +18,17 @@ public class CategoryService
     public static void DeleteCategory()
     {
         var category = GetCategoryOptionInput();
-        CategoryController.DeleteCategory(new Category{ CategoryId = category});
+        CategoryController.DeleteCategory(category);
+    }
+
+    public static void UpdateCategory()
+    {
+        var category = GetCategoryOptionInput();
+        category.Name = AnsiConsole.Confirm("Update name?")
+            ? AnsiConsole.Ask<string>("New category name?")
+            : category.Name;
+
+        CategoryController.UpdateCategory(category);
     }
 
     public static void GetCategories()
@@ -27,15 +37,21 @@ public class CategoryService
         UserInterface.ShowCategoryTable(categories);
     }
 
-    public static int GetCategoryOptionInput()
+    public static void GetCategory()
+    {
+        var category = GetCategoryOptionInput();
+        UserInterface.ShowCategory(category);
+    }
+
+    public static Category GetCategoryOptionInput()
     {
         var categories = CategoryController.GetCategories();
         var categoriesArray = categories.Select(p => p.Name).ToArray();
         var option = AnsiConsole.Prompt(new SelectionPrompt<string>()
             .Title("Choose a category")
             .AddChoices(categoriesArray));
-        var id = categories.Single(p => p.Name == option).CategoryId;
+        var category = categories.Single(p => p.Name == option);
 
-        return id;
+        return category;
     }
 }

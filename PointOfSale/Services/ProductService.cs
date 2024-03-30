@@ -11,7 +11,7 @@ public class ProductService
         var product = new Product();
         product.Name = AnsiConsole.Ask<string>("Product's name:");
         product.Price = AnsiConsole.Ask<decimal>("Product's Price:");
-        product.CategoryId = CategoryService.GetCategoryOptionInput();
+        product.CategoryId = CategoryService.GetCategoryOptionInput().CategoryId;
         ProductController.AddProduct(product);
     }
 
@@ -32,6 +32,10 @@ public class ProductService
             ? AnsiConsole.Ask<decimal>("Product's new price: ")
             : product.Price;
 
+        product.Category = AnsiConsole.Confirm("Update category?")
+            ? CategoryService.GetCategoryOptionInput()
+            : product.Category;
+
         ProductController.UpdateProduct(product);
     }
 
@@ -51,6 +55,12 @@ public class ProductService
     {
         var products = ProductController.GetProducts();
         var productsArray = products.Select(p => p.Name).ToArray();
+        if (!productsArray.Any())
+        {
+            AnsiConsole.Write("No products found, press any key to return to the main menu.");
+            Console.ReadKey();
+            UserInterface.MainMenu();
+        }
         var option = AnsiConsole.Prompt(new SelectionPrompt<string>()
             .Title("Choose a Product")
             .AddChoices(productsArray));

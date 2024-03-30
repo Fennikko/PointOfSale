@@ -51,7 +51,7 @@ public class ProductService
         UserInterface.ShowProduct(product);
     }
 
-    private static Product GetProductOptionInput()
+    public static Product GetProductOptionInput()
     {
         var products = ProductController.GetProducts();
         var productsArray = products.Select(p => p.Name).ToArray();

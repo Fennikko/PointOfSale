@@ -6,6 +6,7 @@ public class enums
     {
         ManageCategories,
         ManageProducts,
+        ManageOrders,
         Quit
     }
 
@@ -26,6 +27,14 @@ public class enums
         UpdateProduct,
         ViewProduct,
         ViewAllProducts,
+        GoBack
+    }
+
+    public enum OrderMenu
+    {
+        AddOrder,
+        GetOrders,
+        GetOrder,
         GoBack
     }
 }

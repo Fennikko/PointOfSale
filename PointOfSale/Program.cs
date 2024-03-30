@@ -1,4 +1,7 @@
-﻿
-using PointOfSale;
+﻿using PointOfSale;
+
+var context = new ProductsContext();
+context.Database.EnsureDeleted();
+context.Database.EnsureCreated();
 
 UserInterface.MainMenu();

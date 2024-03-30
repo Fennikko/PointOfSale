@@ -1,9 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-
-namespace PointOfSale.Models;
-
+﻿namespace PointOfSale.Models;
 
 public class Product
 {

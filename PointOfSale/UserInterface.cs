@@ -1,8 +1,6 @@
-﻿
-using PointOfSale.Models;
+﻿using PointOfSale.Models;
 using PointOfSale.Services;
 using Spectre.Console;
-using System;
 using PointOfSale.Controllers;
 using PointOfSale.Models.DTOs;
 
@@ -246,7 +244,7 @@ public static class UserInterface
 
     }
 
-    internal static void ShowOrderTable(List<Order> orders)
+    public static void ShowOrderTable(List<Order> orders)
     {
         var table = new Table();
         table.AddColumn("Id");

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PointOfSale.Models;
-using Spectre.Console;
 
 namespace PointOfSale.Controllers;
 public class ProductController
@@ -48,4 +47,5 @@ public class ProductController
 
         return products;
     }
+
 }

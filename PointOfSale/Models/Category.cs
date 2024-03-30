@@ -1,8 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.EntityFrameworkCore;
-
-namespace PointOfSale.Models;
-
+﻿namespace PointOfSale.Models;
 
 public class Category
 {
@@ -11,6 +7,5 @@ public class Category
     public string Name { get; set; }
 
     public List<Product> Products { get; set; }
-
 
 }

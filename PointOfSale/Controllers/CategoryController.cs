@@ -42,11 +42,4 @@ public class CategoryController
         return categories;
     }
 
-    public static Category GetCategoryById(int id)
-    {
-        using var db = new ProductsContext();
-        var category = db.Categories.SingleOrDefault(c => c.CategoryId == id);
-
-        return category;
-    }
 }
